@@ -1,32 +1,25 @@
-//DS assignment1 c++
-//polyniomial additon
-
 #include <iostream>
 using namespace std;
 
-// A utility function to return maximum of two integers
+
 int max(int m, int n) { return (m > n) ? m : n; }
 
-// A[] represents coefficients of first polynomial
-// B[] represents coefficients of second polynomial
-// m and n are sizes of A[] and B[] respectively
+
 int* add(int A[], int B[], int m, int n)
 {
     int size = max(m, n);
     int* sum = new int[size];
 
-    // Initialize the product polynomial
     for (int i = 0; i < m; i++)
         sum[i] = A[i];
 
-    // Take every term of first polynomial
+   
     for (int i = 0; i < n; i++)
         sum[i] += B[i];
 
     return sum;
 }
 
-// A utility function to print a polynomial
 void printPoly(int poly[], int n)
 {
     for (int i = 0; i < n; i++) {
@@ -38,31 +31,36 @@ void printPoly(int poly[], int n)
     }
 }
 
-// Driver program to test above functions
 int main()
 {
-    // The following array represents polynomial 5 + 10x^2 +
-    // 6x^3
-    int A[] = { 5, 0, 10, 6 };
+	int i=0;
+  
+    int A[4];
+    cout<<"Enter poly 1";
+    for(i=0; i<4;i++){
+		cin>>A[i];
+	}
+	
 
-    // The following array represents polynomial 1 + 2x +
-    // 4x^2
-    int B[] = { 1, 2, 4 };
-    int m = sizeof(A) / sizeof(A[0]);
-    int n = sizeof(B) / sizeof(B[0]);
+   
+    int B[4];
+    cout<<"Enter poly 2";
+	for(i=0; i<4;i++){
+		cin>>B[i];
+	}
+	
 
     cout << "First polynomial is \n";
-    printPoly(A, m);
+    printPoly(A, 4);
     cout << "\nSecond polynomial is \n";
-    printPoly(B, n);
+    printPoly(B, 4);
 
-    int* sum = add(A, B, m, n);
-    int size = max(m, n);
+    int* sum = add(A, B, 4, 4);
+    int size = max(4, 4);
 
     cout << "\nsum polynomial is \n";
     printPoly(sum, size);
-
-    return 0;
+	return 0;
 }
 
 
