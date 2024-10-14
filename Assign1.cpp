@@ -1,9 +1,7 @@
 #include <iostream>
 using namespace std;
 
-
 int max(int m, int n) { return (m > n) ? m : n; }
-
 
 int* add(int A[], int B[], int m, int n)
 {
@@ -13,7 +11,6 @@ int* add(int A[], int B[], int m, int n)
     for (int i = 0; i < m; i++)
         sum[i] = A[i];
 
-   
     for (int i = 0; i < n; i++)
         sum[i] += B[i];
 
@@ -33,34 +30,21 @@ void printPoly(int poly[], int n)
 
 int main()
 {
-	int i=0;
-  
-    int A[4];
-    cout<<"Enter poly 1";
-    for(i=0; i<4;i++){
-		cin>>A[i];
-	}
-	
-
-   
-    int B[4];
-    cout<<"Enter poly 2";
-	for(i=0; i<4;i++){
-		cin>>B[i];
-	}
-	
+    int A[] = { 5, 0, 10, 6 };
+    int B[] = { 1, 2, 4 };
+    int m = sizeof(A) / sizeof(A[0]);
+    int n = sizeof(B) / sizeof(B[0]);
 
     cout << "First polynomial is \n";
-    printPoly(A, 4);
+    printPoly(A, m);
     cout << "\nSecond polynomial is \n";
-    printPoly(B, 4);
+    printPoly(B, n);
 
-    int* sum = add(A, B, 4, 4);
-    int size = max(4, 4);
+    int* sum = add(A, B, m, n);
+    int size = max(m, n);
 
     cout << "\nsum polynomial is \n";
     printPoly(sum, size);
-	return 0;
+
+    return 0;
 }
-
-
