@@ -16,6 +16,21 @@ int* add(int A[], int B[], int m, int n)
 
     return sum;
 }
+int* multi(int A[], int B[], int m, int n)
+{
+    int size = max(m, n);
+    int* sum = new int[size];
+
+    for (int i = 0; i < m; i++)
+        sum[i] = A[i];
+
+    for (int i = 0; i < n; i++)
+        sum[i] *= B[i];
+
+    return sum;
+}
+
+
 
 void printPoly(int poly[], int n)
 {
@@ -46,5 +61,6 @@ int main()
     cout << "\nsum polynomial is \n";
     printPoly(sum, size);
 
+    
     return 0;
 }
