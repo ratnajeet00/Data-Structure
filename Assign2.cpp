@@ -33,6 +33,8 @@ int main() {
     cin >> row2 >> col2;
 
     if (col1 != row2) {
+    	
+    	
         cout << "Matrix multiplication not possible!" << endl;
         return 1;
     }
