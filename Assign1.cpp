@@ -1,18 +1,12 @@
 #include <iostream>
 using namespace std;
 
-#define MAX 100  // Maximum size for the arrays
-
 int max(int m, int n) { return (m > n) ? m : n; }
 
 int* add(int A[], int B[], int m, int n)
 {
-    static int sum[MAX]; // Use static to ensure the array is not deallocated after function returns
     int size = max(m, n);
-
-    for (int i = 0; i < size; i++) {
-        sum[i] = 0;  // Initialize sum array elements to 0
-    }
+    int* sum = new int[size];
 
     for (int i = 0; i < m; i++)
         sum[i] = A[i];
@@ -36,35 +30,39 @@ void printPoly(int poly[], int n)
 
 int main()
 {
-    int A[MAX], B[MAX];
     int m, n;
 
-    // Get input for first polynomial
-    cout << "Enter the degree of the first polynomial: ";
+    // Get input for the first polynomial
+    cout << "Enter the number of coefficients for the first polynomial: ";
     cin >> m;
-    cout << "Enter the coefficients of the first polynomial (from constant term to highest degree): ";
-    for (int i = 0; i <= m; i++) {
+    int A[m];  // Declare array based on the number of coefficients
+    cout << "Enter the coefficients of the first polynomial: ";
+    for (int i = 0; i < m; i++) {
         cin >> A[i];
     }
 
-    // Get input for second polynomial
-    cout << "Enter the degree of the second polynomial: ";
+    // Get input for the second polynomial
+    cout << "Enter the number of coefficients for the second polynomial: ";
     cin >> n;
-    cout << "Enter the coefficients of the second polynomial (from constant term to highest degree): ";
-    for (int i = 0; i <= n; i++) {
+    int B[n];  // Declare array based on the number of coefficients
+    cout << "Enter the coefficients of the second polynomial: ";
+    for (int i = 0; i < n; i++) {
         cin >> B[i];
     }
 
     cout << "First polynomial is \n";
-    printPoly(A, m + 1);
+    printPoly(A, m);
     cout << "\nSecond polynomial is \n";
-    printPoly(B, n + 1);
+    printPoly(B, n);
 
-    int* sum = add(A, B, m + 1, n + 1);
-    int size = max(m + 1, n + 1);
+    // Perform addition of the polynomials
+    int* sum = add(A, B, m, n);
+    int size = max(m, n);
 
     cout << "\nSum polynomial is \n";
     printPoly(sum, size);
+
+    delete[] sum;
 
     return 0;
 }

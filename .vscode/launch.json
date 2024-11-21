@@ -1,6 +1,34 @@
 {
     "configurations": [
         {
+            "type": "java",
+            "name": "FileOperations",
+            "request": "launch",
+            "mainClass": "FileOperations",
+            "projectName": "Data-Structure_95d10fe6"
+        },
+        {
+            "type": "java",
+            "name": "PizzaParlour",
+            "request": "launch",
+            "mainClass": "PizzaParlour",
+            "projectName": "Data-Structure_95d10fe6"
+        },
+        {
+            "type": "java",
+            "name": "InfixToPostfix",
+            "request": "launch",
+            "mainClass": "InfixToPostfix",
+            "projectName": "Data-Structure_95d10fe6"
+        },
+        {
+            "type": "java",
+            "name": "CricketPlayerList",
+            "request": "launch",
+            "mainClass": "CricketPlayerList",
+            "projectName": "Data-Structure_95d10fe6"
+        },
+        {
             "name": "(Windows) Launch",
             "type": "cppvsdbg",
             "request": "launch",
