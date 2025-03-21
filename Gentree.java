@@ -1,3 +1,6 @@
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class Gentree {
     public static class Node{
         int data;
@@ -54,7 +57,20 @@ public class Gentree {
         if(root == null){
             return;
         }
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(root);
+        while(!queue.isEmpty()){
+            Node current = queue.poll();
+            System.out.print(current.data + " ");
+            if(current.left != null){
+                queue.add(current.left);
+            }
+            if(current.right != null){
+                queue.add(current.right);
+            }
+        }
     }
+
     public static void main(String[] args){
         Node root = new Node(2);
         root.left = new Node(7);
