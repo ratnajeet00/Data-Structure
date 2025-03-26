@@ -1,4 +1,4 @@
-import java.util.*;
+import java.util.Scanner;
 
 class Node {
     int data;
@@ -6,79 +6,91 @@ class Node {
 
     public Node(int data) {
         this.data = data;
-        this.left = this.right = null;
+        left = right = null;
     }
 }
 
 class BinaryTree {
     Node root;
+    Scanner scanner = new Scanner(System.in);
 
-    // Function to construct a binary tree level-wise
-    public Node constructTree(int numNodes, int levels) {
-        if (numNodes <= 0 || levels <= 0) return null;
-        
-        Scanner scanner = new Scanner(System.in);
-        Queue<Node> queue = new LinkedList<>();
-        
-        System.out.print("Enter root node value: ");
-        Node root = new Node(scanner.nextInt());
-        queue.add(root);
-        
-        int count = 1, level = 1;
-        while (!queue.isEmpty() && count < numNodes && level < levels) {
-            int size = queue.size();
-            
-            for (int i = 0; i < size && count < numNodes; i++) {
-                Node current = queue.poll();
-                
-                System.out.print("Enter left child of " + current.data + " (or -1 for no child): ");
-                int leftVal = scanner.nextInt();
-                if (leftVal != -1) {
-                    current.left = new Node(leftVal);
-                    queue.add(current.left);
-                    count++;
-                }
+public void insert(int data) {
+if (root == null) {
+root = new Node(data);
+System.out.println("Inserted as root node.");
+return;
+}
 
-                if (count < numNodes) {
-                    System.out.print("Enter right child of " + current.data + " (or -1 for no child): ");
-                    int rightVal = scanner.nextInt();
-                    if (rightVal != -1) {
-                        current.right = new Node(rightVal);
-                        queue.add(current.right);
-                        count++;
-                    }
-                }
-            }
-            level++;
+Node current = root;
+while (true) {
+System.out.print("Enter direction (L/R) from " + current.data + ": ");
+String direction = scanner.next();
+if (direction.equals("L")) {
+if (current.left == null) {
+current.left = new Node(data);
+System.out.println("Inserted at left of " + current.data);
+break;
+} else {
+current = current.left;
+}
+} else if (direction.equals("R")) {
+if (current.right == null) {
+current.right = new Node(data);
+System.out.println("Inserted at right of " + current.data);
+break;
+} else {
+current = current.right;
+}
+} else {
+System.out.println("Invalid direction! Enter either 'left' or 'right'.");
+}
+}
+}
+
+    public void inOrderTraversal(Node node) {
+        if (node != null) {
+            inOrderTraversal(node.left);
+            System.out.print(node.data + " ");
+            inOrderTraversal(node.right);
         }
-        scanner.close();
-        return root;
     }
-
-    // Inorder traversal for verification
-    public void inorderTraversal(Node node) {
-        if (node == null) return;
-        inorderTraversal(node.left);
-        System.out.print(node.data + " ");
-        inorderTraversal(node.right);
+    public void preOrderTraversal(Node node) {
+        if (node != null) {
+            System.out.print(node.data + " ");
+            preOrderTraversal(node.left);
+            preOrderTraversal(node.right);
+        }
+    }
+    
+    public void postOrderTraversal(Node node) {
+        if (node != null) {
+            postOrderTraversal(node.left);
+            postOrderTraversal(node.right);
+            System.out.print(node.data + " ");
+        }
     }
 }
 
 public class BinaryTreeUserInput {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        
-        System.out.print("Enter number of nodes: ");
-        int numNodes = scanner.nextInt();
-        
-        System.out.print("Enter number of levels: ");
-        int levels = scanner.nextInt();
-        
         BinaryTree tree = new BinaryTree();
-        tree.root = tree.constructTree(numNodes, levels);
-        
-        System.out.println("Inorder Traversal of the tree: ");
-        tree.inorderTraversal(tree.root);
+        System.out.print("Enter number of nodes: ");
+        int n = scanner.nextInt();
+
+        for (int i = 0; i < n; i++) {
+            System.out.print("Enter value for node: ");
+            int value = scanner.nextInt();
+            tree.insert(value);
+        }
+        System.out.println("Pre-order Traversal of the Tree:");
+        tree.preOrderTraversal(tree.root);
+        System.out.println(" ");
+        System.out.println("IN-order Traversal of the Tree:");
+        tree.inOrderTraversal(tree.root);
+        System.out.println(" ");
+        System.out.println("Post-order Traversal of the Tree:");
+        tree.postOrderTraversal(tree.root);
         scanner.close();
     }
 }
